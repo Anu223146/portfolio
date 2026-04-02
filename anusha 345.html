@@ -1,0 +1,201 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="dark">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Anusha Tiwari | Full Stack AI/ML Developer</title>
+
+  <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@600&family=Montserrat:wght@300;400;600&display=swap" rel="stylesheet">
+
+  <style>
+    :root{
+      --bg:#f9f9f9;
+      --card-bg:#ffffff;
+      --text:#111;
+      --accent:#42a5f5;
+      --accent-2:#7c4dff;
+    }
+    [data-theme="dark"]{
+      --bg:#0f0f0f;
+      --card-bg:#1a1a1a;
+      --text:#f1f1f1;
+    }
+
+    *{margin:0;padding:0;box-sizing:border-box;}
+    body{font-family:'Montserrat',sans-serif;background:var(--bg);color:var(--text);}
+    .container{width:min(90%,1200px);margin:auto;}
+
+    nav{
+      position:fixed;bottom:1.5rem;left:50%;transform:translateX(-50%);
+      display:flex;gap:2rem;background:var(--card-bg);
+      padding:0.6rem 1.5rem;border-radius:3rem;
+      box-shadow:0 5px 15px rgba(0,0,0,0.2);
+    }
+    nav a{color:var(--text);text-decoration:none;font-weight:600;}
+
+    header{
+      min-height:100vh;display:flex;align-items:center;justify-content:center;text-align:center;
+    }
+    .hero-content h1{
+      font-family:'Orbitron',sans-serif;
+      font-size:clamp(2.5rem,8vw,4.5rem);
+      background:linear-gradient(135deg,var(--accent),var(--accent-2));
+      -webkit-background-clip:text;color:transparent;
+    }
+
+    .btn{
+      padding:0.6rem 1.4rem;border-radius:2rem;border:none;
+      background:linear-gradient(135deg,var(--accent),var(--accent-2));
+      color:#fff;cursor:pointer;
+      transition:0.3s;
+    }
+    .btn:hover{transform:translateY(-3px);}
+
+    section{padding:5rem 0;}
+
+    .grid{
+      display:grid;
+      gap:2rem;
+      grid-template-columns:repeat(auto-fit,minmax(280px,1fr));
+    }
+
+    .info-card, .project-card{
+      background:var(--card-bg);
+      padding:2rem;
+      border-radius:1rem;
+      box-shadow:0 5px 20px rgba(0,0,0,0.1);
+      transition:0.3s;
+    }
+    .project-card:hover{transform:translateY(-5px);}
+
+    .project-tags{
+      margin-top:10px;
+      display:flex;
+      gap:8px;
+      flex-wrap:wrap;
+    }
+
+    .tag{
+      background:var(--accent-2);
+      color:#fff;
+      padding:4px 10px;
+      border-radius:20px;
+      font-size:12px;
+    }
+
+    footer{text-align:center;padding:2rem;}
+  </style>
+</head>
+
+<body>
+
+<button id="themeToggle">☀️</button>
+
+<nav>
+  <a href="#about">About</a>
+  <a href="#projects">Projects</a>
+</nav>
+
+<header>
+  <div class="hero-content">
+    <h1 id="typewriter"></h1>
+    <p>Building intelligent systems with AI, ML & Full Stack Development </p>
+    <a href="#projects" class="btn">View My Work</a>
+  </div>
+</header>
+
+<!-- ABOUT -->
+<section id="about" class="container">
+  <h2>About Me</h2>
+  <div class="grid">
+    <div class="info-card">
+      <h3>Who I Am</h3>
+      <p>I'm Anusha Tiwari, a Full Stack AI/ML Developer passionate about intelligent systems.</p>
+    </div>
+    <div class="info-card">
+      <h3>What I Do</h3>
+      <p>I build scalable apps integrating AI models, APIs, and modern web technologies.</p>
+    </div>
+    <div class="info-card">
+      <h3>Tech Stack</h3>
+      <p>Python · Flask · React · ML · TensorFlow · PyTorch · MongoDB · AWS</p>
+    </div>
+  </div>
+</section>
+
+<!-- PROJECTS -->
+<section id="projects" class="container">
+  <h2>Projects</h2>
+  <div class="grid">
+
+    <div class="project-card">
+      <h3>AI Chatbot</h3>
+      <p>NLP-based chatbot for real-time conversation.</p>
+      <div class="project-tags">
+        <span class="tag">Python</span>
+        <span class="tag">NLP</span>
+      </div>
+      <br>
+      <a href="#" class="btn">Live Demo</a>
+    </div>
+
+    <div class="project-card">
+      <h3>Stock Predictor</h3>
+      <p>ML model predicting stock prices.</p>
+      <div class="project-tags">
+        <span class="tag">ML</span>
+        <span class="tag">Pandas</span>
+      </div>
+      <br>
+      <a href="#" class="btn">Live Demo</a>
+    </div>
+
+    <div class="project-card">
+      <h3>Blog Platform</h3>
+      <p>Full stack blog app with auth.</p>
+      <div class="project-tags">
+        <span class="tag">React</span>
+        <span class="tag">Node</span>
+      </div>
+      <br>
+      <a href="#" class="btn">Live Demo</a>
+    </div>
+
+  </div>
+</section>
+
+<footer>
+  <p>© <span id="year"></span> Anusha Tiwari</p>
+</footer>
+
+<script>
+const root=document.documentElement;
+const btn=document.getElementById('themeToggle');
+btn.onclick=()=>{
+  const t=root.getAttribute('data-theme')==='dark'?'light':'dark';
+  root.setAttribute('data-theme',t);
+};
+
+const phrases=["Hi, I'm Anusha ","Full Stack Developer","AI/ML Engineer"];
+let i=0,j=0,cur=[];
+const el=document.getElementById('typewriter');
+
+function loop(){
+  el.innerHTML=cur.join('');
+  if(i<phrases.length){
+    if(j<phrases[i].length){
+      cur.push(phrases[i][j]);j++;
+    }else{
+      i++;j=0;cur=[];
+      setTimeout(loop,1200);return;
+    }
+  }else i=0;
+  setTimeout(loop,80);
+}
+loop();
+
+document.getElementById('year').textContent=new Date().getFullYear();
+</script>
+
+</body>
+</html>
